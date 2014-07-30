@@ -12,16 +12,20 @@ def start():
 def randomwordchoice():
 	# using a small word list for now
 	wordlist = 'Apple Watermelon Pineapple Papaya Strawberry Blueberry Fig Durian'.split()
-	secretword = random.choice(wordlist)
+	lowerwordlist = [letter.lower() for letter in wordlist] # make everything lower case
+	print lowerwordlist
+	secretword = random.choice(lowerwordlist)
 	#printing out the secretword just to see if spaces match update
 	print secretword
 	print "_ "*len(secretword)
 	
 	guesses = ''
-	guess = raw_input("Guess a letter!\n> ")
-	guesses += guess
-	while True:
-		
+	
+	while True: #ask about formatting
+		guess = str(raw_input("Guess a letter! Guesses must be made in lowercase\n> "))
+		guess = guess.lower()
+		print guess
+		guesses += guess
 		#print guesses # just to see if it's working
 		for letter in secretword:
 			if letter in guesses:
