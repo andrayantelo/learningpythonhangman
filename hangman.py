@@ -18,9 +18,9 @@ def randomwordchoice():
 	print "_ "*len(secretword)
 	
 	guesses = ''
+	guess = raw_input("Guess a letter!\n> ")
+	guesses += guess
 	while True:
-		guess = raw_input("Guess a letter!\n> ")
-		guesses += guess
 		
 		#print guesses # just to see if it's working
 		for letter in secretword:
