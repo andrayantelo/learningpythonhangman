@@ -8,7 +8,6 @@ def start():
 	randomwordchoice()
 
 	
-	displayfullhangman()
 
 def randomwordchoice():
 	# using a small word list for now
@@ -16,12 +15,27 @@ def randomwordchoice():
 	secretword = random.choice(wordlist)
 	#printing out the secretword just to see if spaces match update
 	print secretword
-	print "_"*len(secretword)
+	print "_ "*len(secretword)
 	
+	while True:
+		guess = raw_input("Guess a letter!\n> ")
+		for letter in secretword:
+			if letter in guess:
+				print letter,
+			else:
+				print '_',
+				# i want to then print a body part but i want the body parts to be printed in order
+				# and i also want the order to be known by how many times the loop has been run
+			
+		
 	
-	
-def displayfullhangman():
-	print "hangman goes here"
+# bodyparts = ['head', 'arm', 'twoarms', 'torso', 'oneleg', 'full body']
+# head = hangman w/ head
+# arm = hangman w/ head + arm
+# twoarms = hangman w/ heat + 2 arms
+# torso = hangman w/ head +2 arms + torso
+# oneleg = hangman w/ head + 2 arms + torso + 1 leg
+# fullbody = hangman w/ head + 2 arms + torso + 2 legs
 	
 def displaynohangman():
 	print "just the hanging post with no guy"
