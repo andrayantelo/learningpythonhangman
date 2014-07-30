@@ -17,15 +17,19 @@ def randomwordchoice():
 	print secretword
 	print "_ "*len(secretword)
 	
+	guesses = ''
 	while True:
 		guess = raw_input("Guess a letter!\n> ")
+		guesses += guess
+		
+		#print guesses # just to see if it's working
 		for letter in secretword:
-			if letter in guess:
+			if letter in guesses:
 				print letter,
 			else:
 				print '_',
 				# i want to then print a body part but i want the body parts to be printed in order
-				# and i also want the order to be known by how many times the loop has been run
+				
 			
 		
 	
