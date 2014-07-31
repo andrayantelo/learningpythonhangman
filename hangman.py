@@ -1,5 +1,6 @@
 # This is the hangman game.
 import random
+import sys
 
 def intro(): 
 	print "The game where your life is at stake! Guess the word right and you may live!"
@@ -13,7 +14,7 @@ def randomwordchoice():
 	# using a small word list for now
 	wordlist = 'Apple Watermelon Pineapple Papaya Strawberry Blueberry Fig Durian'.split()
 	lowerwordlist = [letter.lower() for letter in wordlist] # make everything lower case
-	print lowerwordlist
+	#print lowerwordlist
 	secretword = random.choice(lowerwordlist)
 	#printing out the secretword just to see if spaces match update
 	print secretword
@@ -28,14 +29,14 @@ def randomwordchoice():
 		guesses += guess
 		
 		# trying out a list for the correctguesses to use later when programming the hangman appearance
-		correctguesses = []
+		incorrectguesses = []
 		for letter in guesses:
-			if letter in secretword:
-				correctguesses.append(letter)
+			if letter not in secretword:
+				incorrectguesses.append(letter)
 			else:
 				pass
-		print correctguesses
-		print str(len(correctguesses))
+		#print correctguesses
+		#print str(len(correctguesses))
 			
 		#print guesses # just to see if it's working
 		for letter in secretword:
@@ -44,8 +45,24 @@ def randomwordchoice():
 			else:
 				print '_',
 				# i want to then print a body part but i want the body parts to be printed in order
-					#if len(guesses) 
-				
+				if len(incorrectguesses) == 1:
+					print "head appears"
+				if len(incorrectguesses) == 2:
+					print "arm appears"
+				if len(incorrectguesses) == 3:
+					print "second arm appears"
+				if len(incorrectguesses) == 4:
+					print "torso appears"
+				if len(incorrectguesses) == 5:
+					print "one leg appears"
+				if len(incorrectguesses) == 6:
+					print "full hangman body"
+					print "GAME OVER YOU'RE DEAD"
+					sys.exit()
+				else:
+					pass
+						
+					
 			
 		
 	
