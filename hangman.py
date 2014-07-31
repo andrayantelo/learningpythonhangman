@@ -22,10 +22,21 @@ def randomwordchoice():
 	guesses = ''
 	
 	while True: #ask about formatting
-		guess = str(raw_input("Guess a letter! Guesses must be made in lowercase\n> "))
+		guess = str(raw_input("Guess a letter!\n> "))
 		guess = guess.lower()
 		print guess
 		guesses += guess
+		
+		# trying out a list for the correctguesses to use later when programming the hangman appearance
+		correctguesses = []
+		for letter in guesses:
+			if letter in secretword:
+				correctguesses.append(letter)
+			else:
+				pass
+		print correctguesses
+		print str(len(correctguesses))
+			
 		#print guesses # just to see if it's working
 		for letter in secretword:
 			if letter in guesses:
@@ -33,6 +44,7 @@ def randomwordchoice():
 			else:
 				print '_',
 				# i want to then print a body part but i want the body parts to be printed in order
+					#if len(guesses) 
 				
 			
 		
