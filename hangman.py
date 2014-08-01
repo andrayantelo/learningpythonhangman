@@ -45,10 +45,9 @@ def randomwordchoice():
 		for letter in secretword:
 			if letter in guesses:
 				print letter,
-				
 			else:
 				print '_',
-		
+		print "\n These are the guesses you have made so far:\n", guesses
 		# i want to then print a body part but i want the body parts to be printed at the right time
 		
 		if len(incorrectguesses) == 0:
@@ -73,7 +72,7 @@ def randomwordchoice():
 		else:
 			pass
 						
-					
+		
 			
 		
 	
