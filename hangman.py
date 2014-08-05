@@ -4,7 +4,10 @@ import sys
 from hangmanascii import *
 
 def intro(): 
-	print "The game where your life is at stake! Guess the word right and you may live!"
+	print """The year is 1835. You are a resident of England and have been charged with a crime! 
+	       You attempted to steal an apple at the market. You have been scheduled to be hanged 
+		   in the village of Tyburn UNLESS you can guess the secret word that is chosen by the
+		   king. """
 	
 def start():
 	randomwordchoice()
@@ -38,6 +41,14 @@ def randomwordchoice():
 				incorrectguesses.append(letter)
 			else:
 				pass
+          
+        # keeping track of correct guesses
+        correctguesses = []
+        for letter in guesses:
+            if letter in secretword:
+                correctguesses.append(letter)
+            else:
+                pass
 		
 		# I want it to appear like I'm not just printing the same things over and over	
 		print "\n"*50
@@ -67,22 +78,19 @@ def randomwordchoice():
 		if len(incorrectguesses) == 7:
 			print hungman
 			print "GAME OVER YOU'RE DEAD"
-			
-			sys.exit()
-		else:
-			pass
-						
+            sys.exit()
+        if len(correctguesses) == len(secretword):
+            print "YOU WIN! Play again?"
+            # start() once I have the design figured out. 
+        else:
+            pass
+		
+        				
 		
 			
 		
 	
-# bodyparts = ['head', 'arm', 'twoarms', 'torso', 'oneleg', 'full body']
-# head = hangman w/ head
-# arm = hangman w/ head + arm
-# twoarms = hangman w/ heat + 2 arms
-# torso = hangman w/ head +2 arms + torso
-# oneleg = hangman w/ head + 2 arms + torso + 1 leg
-# fullbody = hangman w/ head + 2 arms + torso + 2 legs
+
 	
 def displaynohangman():
 	print "just the hanging post with no guy"
