@@ -49,7 +49,7 @@ def randomwordchoice():
                 correctguesses.append(letter)
             else:
                 pass
-		
+		print correctguesses
 		# I want it to appear like I'm not just printing the same things over and over	
         print "\n"*50
 		
@@ -61,6 +61,9 @@ def randomwordchoice():
         print "\n These are the guesses you have made so far:\n", guesses
 		# i want to then print a body part but i want the body parts to be printed at the right time
 		
+        #if len(correctguesses) == len(secretword):
+           # print "YOU WIN! Play again?"
+            # start() once I have the design figured out. 
         if len(incorrectguesses) == 0:
             print noman
         if len(incorrectguesses) == 1:
@@ -79,24 +82,26 @@ def randomwordchoice():
             print hungman
             print "GAME OVER YOU'RE DEAD"
             sys.exit()
-        if len(correctguesses) == len(secretword):
-            print "YOU WIN! Play again?"
-            # start() once I have the design figured out. 
         else:
             pass
 		
+        
+        youwin = guessed_all_letters(secretword, correctguesses)
         				
-		
-			
+        if youwin == True:
+            print "You win!"
+            # start()
+        else:
+            pass	
 		
 	
 
 	
-def displaynohangman():
-	print "just the hanging post with no guy"
-
-def letterspaces():
-	pass
+def guessed_all_letters(secretword, correctguesses): 
+    for letter in secretword:
+        if letter not in correctguesses:
+            return False
+    return True
 	
 	
 randomwordchoice()
