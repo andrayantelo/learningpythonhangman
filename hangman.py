@@ -4,8 +4,6 @@ import sys
 from hangmanascii import *
 import time
 
-#clear screen variable (how many blank lines to print)
-
 
 def intro(): 
     print """
@@ -14,13 +12,13 @@ def intro():
             in the village of Tyburn UNLESS you can guess the secret word that is chosen by the
             king. """
             
-    time.sleep(10)
+    raw_input("\n\nPRESS ANY KEY TO CONTINUE.\n> ") 
 
 def start():
     randomwordchoice()
 
 def clear_screen(SCREEN_SIZE):
-
+#clear screen variable (how many blank lines to print)
     print "\n"* SCREEN_SIZE
 
 def randomwordchoice():
@@ -85,7 +83,7 @@ def randomwordchoice():
                 pass
         #print correctguesses
         # I want it to appear like I'm not just printing the same things over and over	
-        clear_screen()
+        clear_screen(100)
         
         for letter in secretword:
             if letter in guesses:
