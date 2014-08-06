@@ -8,10 +8,13 @@ import time
 SCREEN_SIZE = 100
 
 def intro(): 
-    print """The year is 1835. You are a resident of England and have been charged with a crime! 
+    print """
+            The year is 1835. You are a resident of England and have been charged with a crime! 
             You attempted to steal an apple at the market. You have been scheduled to be hanged 
             in the village of Tyburn UNLESS you can guess the secret word that is chosen by the
             king. """
+            
+    time.sleep(10)
 
 def start():
     randomwordchoice()
