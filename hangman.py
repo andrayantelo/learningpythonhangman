@@ -5,7 +5,7 @@ from hangmanascii import *
 import time
 
 #clear screen variable (how many blank lines to print)
-SCREEN_SIZE = 100
+
 
 def intro(): 
     print """
@@ -19,7 +19,7 @@ def intro():
 def start():
     randomwordchoice()
 
-def clear_screen():
+def clear_screen(SCREEN_SIZE):
 
     print "\n"* SCREEN_SIZE
 
@@ -34,17 +34,19 @@ def randomwordchoice():
     
     
     
-    clear_screen()
+    clear_screen(100)
     print king
     time.sleep(1)
-    clear_screen()
+    clear_screen(100)
     print king_speaks
     time.sleep(1)
-    clear_screen()
+    clear_screen(100)
     print king
     time.sleep(1) 
+    clear_screen(100)
 
     print "_ "*len(secretword)
+    print noman
 
     guesses = ''
 
