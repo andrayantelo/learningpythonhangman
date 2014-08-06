@@ -4,6 +4,9 @@ import sys
 from hangmanascii import *
 import time
 
+#clear screen variable (how many blank lines to print)
+SCREEN_SIZE = 100
+
 def intro(): 
     print """The year is 1835. You are a resident of England and have been charged with a crime! 
             You attempted to steal an apple at the market. You have been scheduled to be hanged 
@@ -13,7 +16,9 @@ def intro():
 def start():
     randomwordchoice()
 
+def clear_screen():
 
+    print "\n"* SCREEN_SIZE
 
 def randomwordchoice():
     # using a small word list for now
@@ -24,12 +29,15 @@ def randomwordchoice():
     secretword = random.choice(lowerwordlist)
     #printing out the secretword just to see if spaces match update
     
+    
+    
+    clear_screen()
     print king
     time.sleep(1)
-    print "\n"*50
+    clear_screen()
     print king_speaks
     time.sleep(1)
-    print "\n"*50
+    clear_screen()
     print king
     time.sleep(1) 
 
@@ -72,7 +80,7 @@ def randomwordchoice():
                 pass
         #print correctguesses
         # I want it to appear like I'm not just printing the same things over and over	
-        print "\n"*50
+        clear_screen()
         
         for letter in secretword:
             if letter in guesses:
@@ -133,5 +141,5 @@ def guessed_all_letters(secretword, correctguesses):
 
 
     
-    
+intro()
 randomwordchoice()
