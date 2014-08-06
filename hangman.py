@@ -2,6 +2,7 @@
 import random
 import sys
 from hangmanascii import *
+import time
 
 def intro(): 
     print """The year is 1835. You are a resident of England and have been charged with a crime! 
@@ -19,9 +20,18 @@ def randomwordchoice():
     wordlist = 'Apple Watermelon Pineapple Papaya Strawberry Blueberry Fig Durian'.split()
     lowerwordlist = [letter.lower() for letter in wordlist] # make everything lower case
     
+    
     secretword = random.choice(lowerwordlist)
     #printing out the secretword just to see if spaces match update
-
+    
+    print king
+    time.sleep(1)
+    print "\n"*50
+    print king_speaks
+    time.sleep(1)
+    print "\n"*50
+    print king
+    time.sleep(1) 
 
     print "_ "*len(secretword)
 
@@ -30,13 +40,16 @@ def randomwordchoice():
     while True: #ask about formatting
         guess = str(raw_input("\nGuess a letter!\n> "))
         guess = guess.lower()
-        
+        allowed_letters = 'abcdefghijklmnopqrstuvwxyz'
 
         if len(guess) != 1:
             print "Type in a single letter."
             continue
         if guess in guesses:
             print "You already guessed that."
+            continue
+        if guess not in allowed_letters:
+            print "Please type in a single letter from the English alphabet."
             continue
     
         guesses += guess
