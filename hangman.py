@@ -90,9 +90,18 @@ def randomwordchoice():
         				
         if youwin == True:
             print "You win!"
-            # start()
+            print "Play again? Y or N?"
+            play_again = str(raw_input("> "))
+            play_again.upper()
+                if play_again == "Y":
+                    start()
+                if play_again == "N":
+                    print "Goodbye."
+                    sys.exit()
+                else:
+                     pass
         else:
-            pass	
+            pass 	
 		
 	
 
