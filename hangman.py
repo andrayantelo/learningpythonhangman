@@ -30,7 +30,7 @@ def randomwordchoice():
     while True: #ask about formatting
         guess = str(raw_input("\nGuess a letter!\n> "))
         guess = guess.lower()
-        guesses = ""
+        
 
         if len(guess) != 1:
             print "Type in a single letter."
@@ -57,7 +57,7 @@ def randomwordchoice():
                 correctguesses.append(letter)
             else:
                 pass
-        print correctguesses
+        #print correctguesses
         # I want it to appear like I'm not just printing the same things over and over	
         print "\n"*50
         
