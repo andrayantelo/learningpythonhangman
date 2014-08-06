@@ -4,15 +4,22 @@ import sys
 from hangmanascii import *
 import time
 
+def cool_print(str):
+  for char in str:
+    sys.stdout.write(char)
+    sys.stdout.flush()
+    time.sleep(0.1)   # Or whatever delay you'd like
+  print   # One last print to make sure that you move to a new line
+
 
 def intro(): 
-    print """
+    cool_print("""
             The year is 1835. You are a resident of England and have been charged with a crime! 
             You attempted to steal an apple at the market. You have been scheduled to be hanged 
             in the village of Tyburn UNLESS you can guess the secret word that is chosen by the
-            king. """
+            king. """)
             
-    raw_input("\n\nPRESS ANY KEY TO CONTINUE.\n> ") 
+    raw_input("\n\nPRESS ENTER TO CONTINUE.\n> ") 
 
 def start():
     randomwordchoice()
