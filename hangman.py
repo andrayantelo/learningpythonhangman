@@ -34,6 +34,11 @@ def randomwordchoice():
 
         guesses += guess
         
+        
+        #trying to figure out a way to keep track of how many times a letter has been guessed.
+        if guess in guesses:
+            print "You already guessed this."
+            
         # trying out a list for the incorrectguesses to use later when programming the hangman appearance
         incorrectguesses = []
         for letter in guesses:
@@ -61,37 +66,32 @@ def randomwordchoice():
         print "\n These are the guesses you have made so far:\n", guesses
         # i want to then print a body part but i want the body parts to be printed at the right time
 
-        #if len(correctguesses) == len(secretword):
-           # print "YOU WIN! Play again?"
-            # start() once I have the design figured out. 
-        if len(incorrectguesses) == 0:
-            print noman
-        if len(incorrectguesses) == 1:
-            print head
-        if len(incorrectguesses) == 2:
-            print onearm
-        if len(incorrectguesses) == 3:
-            print twoarms
-        if len(incorrectguesses) == 4:
-            print torso
-        if len(incorrectguesses) == 5:
-            print torso2
-        if len(incorrectguesses) == 6:
-            print oneleg
-        if len(incorrectguesses) == 7:
-            print hungman
-            print "GAME OVER YOU'RE DEAD"
-            sys.exit()
-        else:
-            pass
-
+        hangmanascii(incorrectguesses)
         
         youwin = guessed_all_letters(secretword, correctguesses)
 
         if youwin == True:
             play_more()
             
-                
+def hangmanascii(incorrectguesses):
+    if len(incorrectguesses) == 0:
+        print noman
+    if len(incorrectguesses) == 1:
+        print head
+    if len(incorrectguesses) == 2:
+        print onearm
+    if len(incorrectguesses) == 3:
+        print twoarms
+    if len(incorrectguesses) == 4:
+        print torso
+    if len(incorrectguesses) == 5:
+        print torso2
+    if len(incorrectguesses) == 6:
+        print oneleg
+    if len(incorrectguesses) == 7:
+        print hungman
+        print "GAME OVER YOU'RE DEAD"
+        sys.exit()
                 
 def play_more():
     print "You win!"
