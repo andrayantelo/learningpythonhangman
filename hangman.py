@@ -30,14 +30,17 @@ def randomwordchoice():
     while True: #ask about formatting
         guess = str(raw_input("\nGuess a letter!\n> "))
         guess = guess.lower()
+        guesses = ""
 
-
+        if len(guess) != 1:
+            print "Type in a single letter."
+            continue
+        if guess in guesses:
+            print "You already guessed that."
+            continue
+    
         guesses += guess
         
-        
-        #trying to figure out a way to keep track of how many times a letter has been guessed.
-        if guess in guesses:
-            print "You already guessed this."
             
         # trying out a list for the incorrectguesses to use later when programming the hangman appearance
         incorrectguesses = []
@@ -64,8 +67,9 @@ def randomwordchoice():
             else:
                 print '_',
         print "\n These are the guesses you have made so far:\n", guesses
-        # i want to then print a body part but i want the body parts to be printed at the right time
-
+       
+            
+         # i want to then print a body part but i want the body parts to be printed at the right time
         hangmanascii(incorrectguesses)
         
         youwin = guessed_all_letters(secretword, correctguesses)
@@ -115,4 +119,6 @@ def guessed_all_letters(secretword, correctguesses):
     return True
 
 
+    
+    
 randomwordchoice()
