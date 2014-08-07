@@ -77,7 +77,7 @@ def randomwordchoice():
                 correctguesses.append(letter)
         
         
-        guesses += guess
+        
        
         if len(guess) != 1:
             clear_screen()
@@ -101,19 +101,17 @@ def randomwordchoice():
             hangmanascii(incorrectguesses)
             continue
     
-        
-        
+        else:
+            clear_screen()
+            guesses += guess
+            secretword_spaces(secretword, guesses) 
+            print "\n These are the guesses you have made so far:\n", guesses  
+            hangmanascii(incorrectguesses)
             
-       
-        # I want it to appear like I'm not just printing the same things over and over	
-        clear_screen()
+       	
+        guesses += guess
         
-        secretword_spaces(secretword, guesses)
-        print "\n These are the guesses you have made so far:\n", guesses
-       
-            
-         # i want to then print a body part but i want the body parts to be printed at the right time
-        hangmanascii(incorrectguesses)
+          
         
         youwin = guessed_all_letters(secretword, correctguesses)
 
