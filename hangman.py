@@ -64,6 +64,33 @@ def randomwordchoice():
         guess = guess.lower()
         allowed_letters = 'abcdefghijklmnopqrstuvwxyz'
         
+             
+       
+        if len(guess) != 1:
+            #clear_screen()
+            print "Type in a single letter."
+            #secretword_spaces(secretword, guesses)
+            #print "\n These are the guesses you have made so far:\n", guesses
+            #hangmanascii(incorrectguesses)
+            continue
+        if guess in guesses:
+            #clear_screen()
+            print "You already guessed that."
+            #secretword_spaces(secretword, guesses)
+            #print "\n These are the guesses you have made so far:\n", guesses
+            #hangmanascii(incorrectguesses)
+            continue
+        if guess not in allowed_letters:
+           #clear_screen()
+            print "Please type in a single letter from the English alphabet."
+            #secretword_spaces(secretword, guesses)
+            #print "\n These are the guesses you have made so far:\n", guesses
+            #hangmanascii(incorrectguesses)
+            continue
+    
+ 
+        clear_screen()
+        guesses += guess
          # trying out a list for the incorrectguesses to use later when programming the hangman appearance
         incorrectguesses = []
         for letter in guesses:
@@ -75,42 +102,13 @@ def randomwordchoice():
         for letter in guesses:
             if letter in secretword:
                 correctguesses.append(letter)
-        
-        
-        
-       
-        if len(guess) != 1:
-            clear_screen()
-            print "Type in a single letter."
-            secretword_spaces(secretword, guesses)
-            print "\n These are the guesses you have made so far:\n", guesses
-            hangmanascii(incorrectguesses)
-            continue
-        if guess in guesses:
-            clear_screen()
-            print "You already guessed that."
-            secretword_spaces(secretword, guesses)
-            print "\n These are the guesses you have made so far:\n", guesses
-            hangmanascii(incorrectguesses)
-            continue
-        if guess not in allowed_letters:
-            clear_screen()
-            print "Please type in a single letter from the English alphabet."
-            secretword_spaces(secretword, guesses)
-            print "\n These are the guesses you have made so far:\n", guesses
-            hangmanascii(incorrectguesses)
-            continue
-    
-        else:
-            clear_screen()
-            guesses += guess
-            secretword_spaces(secretword, guesses) 
-            print "\n These are the guesses you have made so far:\n", guesses  
-            hangmanascii(incorrectguesses)
+ 
+        secretword_spaces(secretword, guesses) 
+        print "\n These are the guesses you have made so far:\n", guesses  
+        hangmanascii(incorrectguesses)
             
        	
-        guesses += guess
-        
+       
           
         
         youwin = guessed_all_letters(secretword, correctguesses)
