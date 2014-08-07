@@ -4,6 +4,8 @@ import sys
 from hangmanascii import *
 import time
 
+SCREEN_SIZE = 100
+
 def cool_print(str):
   for char in str:
     sys.stdout.write(char)
@@ -24,7 +26,7 @@ def intro():
 def start():
     randomwordchoice()
 
-def clear_screen(SCREEN_SIZE):
+def clear_screen():
 #clear screen variable (how many blank lines to print)
     print "\n"* SCREEN_SIZE
 
@@ -39,16 +41,16 @@ def randomwordchoice():
     
     
     
-    clear_screen(100)
+    clear_screen()
     print king
     time.sleep(1)
-    clear_screen(100)
+    clear_screen()
     print king_speaks
     time.sleep(1)
-    clear_screen(100)
+    clear_screen()
     print king
     time.sleep(1) 
-    clear_screen(100)
+    clear_screen()
 
     print "_ "*len(secretword)
     print noman
@@ -90,7 +92,7 @@ def randomwordchoice():
                 pass
         #print correctguesses
         # I want it to appear like I'm not just printing the same things over and over	
-        clear_screen(100)
+        clear_screen()
         
         for letter in secretword:
             if letter in guesses:
