@@ -18,7 +18,7 @@ def cool_print(str):
 
 def intro(): 
     cool_print("""
-The year is 1835. You are a resident of England and have been charged with a crime! 
+The year is 1750. You are a resident of England and have been charged with a crime! 
 You attempted to steal an apple at the market. You have been scheduled to be hanged 
 in the village of Tyburn UNLESS you can guess the secret word that is chosen by the
 king. """)
@@ -115,6 +115,7 @@ def randomwordchoice():
         youwin = guessed_all_letters(secretword, correctguesses)
 
         if youwin == True:
+            print "You win!"
             play_more()
             
             
@@ -143,11 +144,12 @@ def hangmanascii(incorrectguesses):
         print oneleg
     if len(incorrectguesses) == 7:
         print hungman
-        print "GAME OVER YOU'RE DEAD"
-        sys.exit()
+        print laughing_king
+        print "\n\nGAME OVER YOU'RE DEAD"
+        play_more()
+        
                 
 def play_more():
-    print "You win!"
     print "Play again? Y or N?"
     while True:
         play_again = str(raw_input("> "))
