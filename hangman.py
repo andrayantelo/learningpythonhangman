@@ -6,20 +6,28 @@ import time
 
 SCREEN_SIZE = 100
 
+# using a small word list for now
+wordlist = 'Apple Watermelon Pineapple Papaya Strawberry Blueberry Fig Durian'.split()
+lowerwordlist = [letter.lower() for letter in wordlist] # make everything lower case
+    
+    
+secretword = random.choice(lowerwordlist)
+#printing out the secretword just to see if spaces match update
+
 def cool_print(str):
   for char in str:
     sys.stdout.write(char)
     sys.stdout.flush()
-    time.sleep(0.1)   # Or whatever delay you'd like
+    time.sleep(0.01)   # Or whatever delay you'd like
   print   # One last print to make sure that you move to a new line
 
 
 def intro(): 
     cool_print("""
-            The year is 1835. You are a resident of England and have been charged with a crime! 
-            You attempted to steal an apple at the market. You have been scheduled to be hanged 
-            in the village of Tyburn UNLESS you can guess the secret word that is chosen by the
-            king. """)
+The year is 1835. You are a resident of England and have been charged with a crime! 
+You attempted to steal an apple at the market. You have been scheduled to be hanged 
+in the village of Tyburn UNLESS you can guess the secret word that is chosen by the
+king. """)
             
     raw_input("\n\nPRESS ENTER TO CONTINUE.\n> ") 
 
@@ -31,13 +39,7 @@ def clear_screen():
     print "\n"* SCREEN_SIZE
 
 def randomwordchoice():
-    # using a small word list for now
-    wordlist = 'Apple Watermelon Pineapple Papaya Strawberry Blueberry Fig Durian'.split()
-    lowerwordlist = [letter.lower() for letter in wordlist] # make everything lower case
     
-    
-    secretword = random.choice(lowerwordlist)
-    #printing out the secretword just to see if spaces match update
     
     
     
@@ -61,44 +63,52 @@ def randomwordchoice():
         guess = str(raw_input("\nGuess a letter!\n> "))
         guess = guess.lower()
         allowed_letters = 'abcdefghijklmnopqrstuvwxyz'
-
-        if len(guess) != 1:
-            print "Type in a single letter."
-            continue
-        if guess in guesses:
-            print "You already guessed that."
-            continue
-        if guess not in allowed_letters:
-            print "Please type in a single letter from the English alphabet."
-            continue
-    
-        guesses += guess
         
-            
-        # trying out a list for the incorrectguesses to use later when programming the hangman appearance
+         # trying out a list for the incorrectguesses to use later when programming the hangman appearance
         incorrectguesses = []
         for letter in guesses:
             if letter not in secretword:
                 incorrectguesses.append(letter)
-            else:
-                pass
-          
+                
         # keeping track of correct guesses
         correctguesses = []
         for letter in guesses:
             if letter in secretword:
                 correctguesses.append(letter)
-            else:
-                pass
-        #print correctguesses
+        
+        
+        guesses += guess
+       
+        if len(guess) != 1:
+            clear_screen()
+            print "Type in a single letter."
+            secretword_spaces(secretword, guesses)
+            print "\n These are the guesses you have made so far:\n", guesses
+            hangmanascii(incorrectguesses)
+            continue
+        if guess in guesses:
+            clear_screen()
+            print "You already guessed that."
+            secretword_spaces(secretword, guesses)
+            print "\n These are the guesses you have made so far:\n", guesses
+            hangmanascii(incorrectguesses)
+            continue
+        if guess not in allowed_letters:
+            clear_screen()
+            print "Please type in a single letter from the English alphabet."
+            secretword_spaces(secretword, guesses)
+            print "\n These are the guesses you have made so far:\n", guesses
+            hangmanascii(incorrectguesses)
+            continue
+    
+        
+        
+            
+       
         # I want it to appear like I'm not just printing the same things over and over	
         clear_screen()
         
-        for letter in secretword:
-            if letter in guesses:
-                print letter,
-            else:
-                print '_',
+        secretword_spaces(secretword, guesses)
         print "\n These are the guesses you have made so far:\n", guesses
        
             
@@ -109,6 +119,15 @@ def randomwordchoice():
 
         if youwin == True:
             play_more()
+            
+            
+def secretword_spaces(secretword, guesses):
+	for letter in secretword:
+            if letter in guesses:
+                print letter,
+            else:
+                print '_',
+	
             
 def hangmanascii(incorrectguesses):
     if len(incorrectguesses) == 0:
@@ -135,7 +154,7 @@ def play_more():
     print "Play again? Y or N?"
     while True:
         play_again = str(raw_input("> "))
-        play_again.upper()
+        play_again = play_again.upper()
         if play_again == "Y":
             start()
         if play_again == "N":
