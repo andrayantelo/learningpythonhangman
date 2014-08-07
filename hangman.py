@@ -6,13 +6,7 @@ import time
 
 SCREEN_SIZE = 100
 
-# using a small word list for now
-wordlist = 'Apple Watermelon Pineapple Papaya Strawberry Blueberry Fig Durian'.split()
-lowerwordlist = [letter.lower() for letter in wordlist] # make everything lower case
-    
-    
-secretword = random.choice(lowerwordlist)
-#printing out the secretword just to see if spaces match update
+
 
 def cool_print(str):
   for char in str:
@@ -39,7 +33,13 @@ def clear_screen():
     print "\n"* SCREEN_SIZE
 
 def randomwordchoice():
+    # using a small word list for now
+    wordlist = 'Apple Watermelon Pineapple Papaya Strawberry Blueberry Fig Durian'.split()
+    lowerwordlist = [letter.lower() for letter in wordlist] # make everything lower case
     
+    
+    secretword = random.choice(lowerwordlist)
+    #printing out the secretword just to see if spaces match update
     
     
     
@@ -60,6 +60,7 @@ def randomwordchoice():
     guesses = ''
 
     while True: #ask about formatting
+        
         guess = str(raw_input("\nGuess a letter!\n> "))
         guess = guess.lower()
         allowed_letters = 'abcdefghijklmnopqrstuvwxyz'
@@ -67,25 +68,25 @@ def randomwordchoice():
              
        
         if len(guess) != 1:
-            #clear_screen()
+            clear_screen()
             print "Type in a single letter."
-            #secretword_spaces(secretword, guesses)
-            #print "\n These are the guesses you have made so far:\n", guesses
-            #hangmanascii(incorrectguesses)
+            secretword_spaces(secretword, guesses)
+            print "\n These are the guesses you have made so far:\n", guesses
+            hangmanascii(incorrectguesses)
             continue
         if guess in guesses:
-            #clear_screen()
+            clear_screen()
             print "You already guessed that."
-            #secretword_spaces(secretword, guesses)
-            #print "\n These are the guesses you have made so far:\n", guesses
-            #hangmanascii(incorrectguesses)
+            secretword_spaces(secretword, guesses)
+            print "\n These are the guesses you have made so far:\n", guesses
+            hangmanascii(incorrectguesses)
             continue
         if guess not in allowed_letters:
-           #clear_screen()
+            clear_screen()
             print "Please type in a single letter from the English alphabet."
-            #secretword_spaces(secretword, guesses)
-            #print "\n These are the guesses you have made so far:\n", guesses
-            #hangmanascii(incorrectguesses)
+            secretword_spaces(secretword, guesses)
+            print "\n These are the guesses you have made so far:\n", guesses
+            hangmanascii(incorrectguesses)
             continue
     
  
