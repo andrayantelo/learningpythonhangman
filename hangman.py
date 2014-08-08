@@ -3,6 +3,7 @@ import random
 import sys
 from hangmanascii import *
 import time
+import string
 
 SCREEN_SIZE = 100
 
@@ -10,8 +11,12 @@ list_of_words = "words.txt"
 
 def load_wordlist():
     lines = open(list_of_words).read().decode('utf-8').split('\n')
+    lines = [line for line in lines if line.isalpha()]
+    lines = [line for line in lines if line.islower()]
+    print lines
     return lines
-    
+ 
+load_wordlist()   
 
 def cool_print(str):
   for char in str:
