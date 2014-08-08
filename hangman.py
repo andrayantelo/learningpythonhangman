@@ -6,7 +6,12 @@ import time
 
 SCREEN_SIZE = 100
 
+list_of_words = "words.txt"
 
+def load_wordlist():
+    lines = open(list_of_words).read().decode('utf-8').split('\n')
+    return lines
+    
 
 def cool_print(str):
   for char in str:
