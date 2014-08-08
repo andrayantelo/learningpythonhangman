@@ -17,7 +17,7 @@ def load_wordlist():
     print lines
     return lines
  
-load_wordlist()   
+#load_wordlist()   
 
 def cool_print(str):
   for char in str:
