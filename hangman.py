@@ -19,8 +19,7 @@ def load_wordlist():
    
     #print lines
     return lines
- 
-load_wordlist()   
+   
 
 def cool_print(str):
   for char in str:
@@ -48,11 +47,11 @@ def clear_screen():
 
 def randomwordchoice():
     # using a small word list for now
-    wordlist = 'Apple Watermelon Pineapple Papaya Strawberry Blueberry Fig Durian'.split()
-    lowerwordlist = [letter.lower() for letter in wordlist] # make everything lower case
+    #wordlist = 'Apple Watermelon Pineapple Papaya Strawberry Blueberry Fig Durian'.split()
+    #lowerwordlist = [letter.lower() for letter in wordlist] # make everything lower case
     
     
-    secretword = random.choice(lowerwordlist)
+    secretword = random.choice(load_wordlist())
     #printing out the secretword just to see if spaces match update
     
     
@@ -86,21 +85,21 @@ def randomwordchoice():
             print "Type in a single letter."
             secretword_spaces(secretword, guesses)
             print "\n These are the guesses you have made so far:\n", guesses
-            hangmanascii(incorrectguesses)
+            hangmanascii(incorrectguesses, secretword)
             continue
         if guess in guesses:
             clear_screen()
             print "You already guessed that."
             secretword_spaces(secretword, guesses)
             print "\n These are the guesses you have made so far:\n", guesses
-            hangmanascii(incorrectguesses)
+            hangmanascii(incorrectguesses, secretword)
             continue
         if guess not in allowed_letters:
             clear_screen()
             print "Please type in a single letter from the English alphabet."
             secretword_spaces(secretword, guesses)
             print "\n These are the guesses you have made so far:\n", guesses
-            hangmanascii(incorrectguesses)
+            hangmanascii(incorrectguesses, secretword)
             continue
     
  
@@ -120,7 +119,7 @@ def randomwordchoice():
  
         secretword_spaces(secretword, guesses) 
         print "\n These are the guesses you have made so far:\n", guesses  
-        hangmanascii(incorrectguesses)
+        hangmanascii(incorrectguesses, secretword)
             
        	
        
@@ -141,7 +140,7 @@ def secretword_spaces(secretword, guesses):
                 print '_',
 	
             
-def hangmanascii(incorrectguesses):
+def hangmanascii(incorrectguesses, secretword):
     if len(incorrectguesses) == 0:
         print noman
     if len(incorrectguesses) == 1:
@@ -158,7 +157,8 @@ def hangmanascii(incorrectguesses):
         print oneleg
     if len(incorrectguesses) == 7:
         print hungman
-        print laughing_king
+        print laughing_king, '\n\n\n\n'
+        print "The secret word was: %s.\n\n" % secretword
         print "\n\nGAME OVER YOU'RE DEAD"
         play_more()
         
