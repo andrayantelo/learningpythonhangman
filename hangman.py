@@ -14,7 +14,7 @@ def load_wordlist():
     lines = open(list_of_words).read().decode('utf-8').split('\n')
     lines = [line for line in lines if line.isalpha()]
     lines = [line for line in lines if line.islower()]
-    lines = [line for line in lines if len(line) > 3]
+    lines = [line for line in lines if len(line) > 6]
     lines = [line for line in lines if set(line) <= alphabet]
    
     #print lines
