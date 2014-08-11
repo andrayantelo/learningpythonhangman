@@ -10,14 +10,17 @@ SCREEN_SIZE = 100
 list_of_words = "words.txt"
 
 def load_wordlist():
+    alphabet = set('abcdefghijklmnopqrstuvwxyz')
     lines = open(list_of_words).read().decode('utf-8').split('\n')
     lines = [line for line in lines if line.isalpha()]
     lines = [line for line in lines if line.islower()]
     lines = [line for line in lines if len(line) > 3]
-    print lines
+    lines = [line for line in lines if set(line) <= alphabet]
+   
+    #print lines
     return lines
  
-#load_wordlist()   
+load_wordlist()   
 
 def cool_print(str):
   for char in str:
