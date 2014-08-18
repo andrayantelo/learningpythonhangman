@@ -5,21 +5,36 @@ from hangmanascii import *
 import time
 import string
 
-SCREEN_SIZE = 100
 
-list_of_words = "words.txt"
+class hangman(Object):
+	
+	def __init__(self, screen_size = 100):
+		self.screen_size = screen_size
+		self.wordlist = 'Apple Watermelon Pineapple Papaya Strawberry Blueberry Fig Durian'.split()
+		self.list_of_words = "words.txt"
 
-def load_wordlist():
-    alphabet = set('abcdefghijklmnopqrstuvwxyz')
-    lines = open(list_of_words).read().decode('utf-8').split('\n')
-    lines = [line for line in lines if line.isalpha()]
-    lines = [line for line in lines if line.islower()]
-    lines = [line for line in lines if len(line) > 6]
-    lines = [line for line in lines if set(line) <= alphabet]
+#SCREEN_SIZE = 100
+
+#list_of_words = "words.txt"
+
+	def load_wordlist(self):
+		alphabet = set('abcdefghijklmnopqrstuvwxyz')
+		self.lines = open(self.list_of_words).read().decode('utf-8').split('\n')
+		self.lines = [line for line in lines if line.isalpha()]
+		self.lines = [line for line in lines if line.islower()]
+		self.lines = [line for line in lines if len(line) > 6]
+		self.lines = [line for line in lines if set(line) <= alphabet]
    
-    #print lines
-    return lines
+		print lines
+		return lines
    
+
+mygame = hangman()
+mygame.load_wordlist()
+
+
+
+
 
 def cool_print(str):
   for char in str:
@@ -37,6 +52,20 @@ in the village of Tyburn UNLESS you can guess the secret word that is chosen by 
 king. """)
             
     raw_input("\n\nPRESS ENTER TO CONTINUE.\n> ") 
+    
+def king_speech():
+	
+	clear_screen()
+	print king
+	time.sleep(1)
+	clear_screen()
+	print king_speaks
+	time.sleep(1)
+	clear_screen()
+	print king
+	time.sleep(1) 
+	clear_screen()
+	
 
 def start():
     randomwordchoice()
@@ -55,20 +84,10 @@ def randomwordchoice():
     #printing out the secretword just to see if spaces match update
     
     
-    
-    clear_screen()
-    print king
-    time.sleep(1)
-    clear_screen()
-    print king_speaks
-    time.sleep(1)
-    clear_screen()
-    print king
-    time.sleep(1) 
-    clear_screen()
-
+    king_speech()
     print "_ "*len(secretword)
-    print noman
+	print noman
+    
 
     guesses = ''
 
@@ -185,5 +204,5 @@ def guessed_all_letters(secretword, correctguesses):
 
 
     
-intro()
-randomwordchoice()
+#intro()
+#randomwordchoice()
