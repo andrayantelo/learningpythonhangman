@@ -181,17 +181,19 @@ def ask_user_play():
         response = str(raw_input("y or n?\n> "))
         response = response.lower()
         if response == 'y':
-            return response
+            mygame = Hangman()
+            mygame.game()
         if response == 'n':
             exit()
         else:
             continue
 
-response = "y"
-while True:
+#response = "y"
+#while True:
     
-    if response == "y":        
-        mygame = Hangman()
-        mygame.game()
+#    if response == "y":        
+        
+ #       ask_user_play()
 
-
+mygame = Hangman()
+mygame.game()
