@@ -10,26 +10,6 @@ import textwrap
 
 #list_of_words = "words.txt"
 
-
-class Hangman(object):
-	
-    def __init__(self, screen_size = 100):
-        self.screen_size = screen_size
-        self.wordlist = 'Apple Watermelon Pineapple Papaya Strawberry Blueberry Fig Durian'.split()
-        self.list_of_words = "words.txt"
-        self.intro_text = textwrap.dedent("""
-        The year is 1750. You are a resident of England and have been charged with a crime! 
-        You attempted to steal an apple at the market. You have been scheduled to be hanged 
-        in the village of Tyburn UNLESS you can guess the secret word that is chosen by the
-        king. """)
-        self.secret_word = 'apple'
-        self.guess = ''
-        self.guesses = ''
-        self.incorrect_guesses = []
-        self.correct_guesses = []
-
-
-
     def load_wordlist(self):
         alphabet = set('abcdefghijklmnopqrstuvwxyz')
         self.lines = open(self.list_of_words).read().decode('utf-8').split('\n')
@@ -55,7 +35,7 @@ class Hangman(object):
     #clear screen variable (how many blank lines to print)
         print "\n"* self.screen_size
         
-    def intro(self): 
+     def intro(self): 
         self.cool_print(self.intro_text)
             
         raw_input("\n\nPRESS ENTER TO CONTINUE.\n> ") 
@@ -70,6 +50,28 @@ class Hangman(object):
         print king
         time.sleep(1) 
         self.clear_screen()
+   
+
+
+
+
+class Hangman(object):
+	
+    def __init__(self, screen_size = 100):
+        self.screen_size = screen_size
+        self.wordlist = 'Apple Watermelon Pineapple Papaya Strawberry Blueberry Fig Durian'.split()
+        self.list_of_words = "words.txt"
+        self.intro_text = textwrap.dedent("""
+        The year is 1750. You are a resident of England and have been charged with a crime! 
+        You attempted to steal an apple at the market. You have been scheduled to be hanged 
+        in the village of Tyburn UNLESS you can guess the secret word that is chosen by the
+        king. """)
+        self.secret_word = 'apple'
+        self.guess = ''
+        self.guesses = ''
+        self.incorrect_guesses = []
+        self.correct_guesses = []
+
    
     def random_word_choice(self):
         self.secret_word = random.choice(self.load_wordlist())
@@ -163,17 +165,14 @@ class Hangman(object):
             print "\n\nGAME OVER YOU'RE DEAD"
             ask_user_play()
             
-    def incorrectguesses(self, guesses):
+    def guesses(self):
         for letter in self.guesses:
             if letter not in self.secret_word:
                 self.incorrect_guesses.append(letter)
-        return self.incorrect_guesses
-        
-    def correctguesses(self, guesses):
-        for letter in self.guesses:
+    
             if letter in self.secret_word:
                 self.correct_guesses.append(letter)
-        return self.correct_guesses
+       return 
 
 def ask_user_play():
     while True:
