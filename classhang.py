@@ -59,18 +59,22 @@ class Hangman(object):
         self.secret_word = 'apple'
         self.guess = ''
         self.guesses = []
+        self.trimmed_incorrect_guesses =[]
         self.incorrect_guesses = []
         self.correct_guesses = []
 
+    def choose_random_word(self):
+         self.secret_word = random.choice(self.wordlist)   
+         return self.secret_word
         
-    def random_word_choice(self):
-        #self.secret_word = random.choice(self.wordlist)
-        self.secret_word = list(self.secret_word)
-        for i, letter in enumerate(self.secret_word):
+    def construct_billboard(self):
+        
+        self.billboard = list(self.secret_word)
+        for i, letter in enumerate(self.billboard):
             if letter not in self.guesses:
-                self.secret_word[i] = "_"
-        print ' '.join(self.secret_word)    
-        return ' '.join(self.secret_word)
+                self.billboard[i] = "_"
+        print ' '.join(self.billboard)    
+        return ' '.join(self.billboard)
         
     def validate_guess(self, guess):
         if len(guess) != 1:
@@ -87,19 +91,87 @@ class Hangman(object):
             if letter not in self.secret_word:
                 self.incorrect_guesses.append(letter)
     
-            if letter in self.secret_word:
+            elif letter in self.secret_word:
                 self.correct_guesses.append(letter)
-        
+       
+    def game_status(self):
+        guesses = self.guesses
+        for letter in self.incorrect_guesses:
+            if letter not in self.trimmed_incorrect_guesses:
+                self.trimmed_incorrect_guesses.append(letter)
+        missed = self.trimmed_incorrect_guesses
+        hit = set(self.correct_guesses)
+        if len(missed) >= 7:
+            print HANGMAN_LOSE
+            return HANGMAN_LOSE
+        if hit >= set(self.secret_word):
+            print HANGMAN_WIN
+            return HANGMAN_WIN
+        else:
+            print HANGMAN_CONTINUE
+            return HANGMAN_CONTINUE
         
         
         
 
 
 mygame = Hangman()
-mygame.random_word_choice()
-mygame.guess = 'a'
+#mygame.choose_random_word()
+mygame.construct_billboard()
+print mygame.secret_word
+mygame.guess = 't'
 print mygame.validate_guess(mygame.guess)
 print mygame.guesses
 mygame.guess_status()
 print mygame.correct_guesses
 print mygame.incorrect_guesses
+mygame.game_status()
+
+mygame.guess = 'o'
+print mygame.validate_guess(mygame.guess)
+print mygame.guesses
+mygame.guess_status()
+print mygame.correct_guesses
+print mygame.incorrect_guesses
+mygame.game_status()
+
+mygame.guess = 'r'
+print mygame.validate_guess(mygame.guess)
+print mygame.guesses
+mygame.guess_status()
+print mygame.correct_guesses
+print mygame.incorrect_guesses
+mygame.game_status()
+
+mygame.guess = 'h'
+print mygame.validate_guess(mygame.guess)
+print mygame.guesses
+mygame.guess_status()
+print mygame.correct_guesses
+print mygame.incorrect_guesses
+mygame.game_status()
+
+mygame.guess = 'q'
+print mygame.validate_guess(mygame.guess)
+print mygame.guesses
+mygame.guess_status()
+print mygame.correct_guesses
+print mygame.incorrect_guesses
+mygame.game_status()
+
+mygame.guess = 'w'
+print mygame.validate_guess(mygame.guess)
+print mygame.guesses
+mygame.guess_status()
+print mygame.correct_guesses
+print mygame.incorrect_guesses
+mygame.game_status()
+
+mygame.guess = 'y'
+print mygame.validate_guess(mygame.guess)
+print mygame.guesses
+mygame.guess_status()
+print mygame.correct_guesses
+print mygame.trimmed_incorrect_guesses
+mygame.game_status()
+
