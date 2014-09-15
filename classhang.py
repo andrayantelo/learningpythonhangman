@@ -97,7 +97,19 @@ class Hangman(object):
             return HANGMAN_ALREADYGUESSED
         if guess not in self.allowed_letters:
             return HANGMAN_ALPHABET
-        self.guesses = self.guesses.append(guess)
+        self.guesses.append(guess)
+        
+        
+    def guess_status(self):
+        for letter in self.guesses:
+            if letter not in self.secret_word:
+                self.incorrect_guesses.append(letter)
+    
+            if letter in self.secret_word:
+                self.correct_guesses.append(letter)
+        return {"correct": self.correct_guesses, 
+                 "incorrect": self.incorrect_guesses}
+        
         
         
     def game(self):
@@ -176,15 +188,7 @@ class Hangman(object):
             print "The secret word was: %s.\n\n" % self.secret_word
             print "\n\nGAME OVER YOU'RE DEAD"
             ask_user_play()
-            
-    def guesses(self):
-        for letter in self.guesses:
-            if letter not in self.secret_word:
-                self.incorrect_guesses.append(letter)
-    
-            if letter in self.secret_word:
-                self.correct_guesses.append(letter)
-        return 
+        
 
 def ask_user_play():
     while True:
@@ -211,3 +215,5 @@ mygame.random_word_choice()
 mygame.guess = 'a'
 print mygame.validate_guess(mygame.guess)
 print mygame.guesses
+mygame.guess_status()
+print mygame.correct_guesses
