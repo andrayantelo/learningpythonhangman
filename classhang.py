@@ -73,18 +73,14 @@ class Hangman(object):
         for i, letter in enumerate(self.billboard):
             if letter not in self.guesses:
                 self.billboard[i] = "_"
-        print ' '.join(self.billboard)    
         return ' '.join(self.billboard)
         
     def validate_guess(self, letter):
         if len(letter) != 1:
-            print HANGMAN_ONELETTER
             return HANGMAN_ONELETTER
         elif letter in self.guesses:
-            print HANGMAN_ALREADYGUESSED
             return HANGMAN_ALREADYGUESSED
         elif letter not in self.allowed_letters:
-            print HANGMAN_ALPHABET
             return HANGMAN_ALPHABET
         self.guesses.append(letter)
         
@@ -105,13 +101,10 @@ class Hangman(object):
         missed = self.trimmed_incorrect_guesses
         hit = set(self.correct_guesses)
         if len(missed) >= 7:
-            print HANGMAN_LOSE
             return HANGMAN_LOSE
         if hit >= set(self.secret_word):
-            print HANGMAN_WIN
             return HANGMAN_WIN
         else:
-            print HANGMAN_CONTINUE
             return HANGMAN_CONTINUE
         
         
