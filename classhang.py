@@ -76,14 +76,17 @@ class Hangman(object):
         print ' '.join(self.billboard)    
         return ' '.join(self.billboard)
         
-    def validate_guess(self, guess):
-        if len(guess) != 1:
+    def validate_guess(self, letter):
+        if len(letter) != 1:
+            print HANGMAN_ONELETTER
             return HANGMAN_ONELETTER
-        if guess in self.guesses:
+        elif letter in self.guesses:
+            print HANGMAN_ALREADYGUESSED
             return HANGMAN_ALREADYGUESSED
-        if guess not in self.allowed_letters:
+        elif letter not in self.allowed_letters:
+            print HANGMAN_ALPHABET
             return HANGMAN_ALPHABET
-        self.guesses.append(guess)
+        self.guesses.append(letter)
         
         
     def guess_status(self):
@@ -112,66 +115,39 @@ class Hangman(object):
             return HANGMAN_CONTINUE
         
         
-        
-
-
+# game
 mygame = Hangman()
-#mygame.choose_random_word()
-mygame.construct_billboard()
-print mygame.secret_word
-mygame.guess = 't'
-print mygame.validate_guess(mygame.guess)
-print mygame.guesses
-mygame.guess_status()
-print mygame.correct_guesses
-print mygame.incorrect_guesses
-mygame.game_status()
 
-mygame.guess = 'o'
-print mygame.validate_guess(mygame.guess)
-print mygame.guesses
-mygame.guess_status()
-print mygame.correct_guesses
-print mygame.incorrect_guesses
-mygame.game_status()
+while True:
 
-mygame.guess = 'r'
-print mygame.validate_guess(mygame.guess)
-print mygame.guesses
-mygame.guess_status()
-print mygame.correct_guesses
-print mygame.incorrect_guesses
-mygame.game_status()
+    mygame.guess = raw_input("Guess a letter!\n> ")
 
-mygame.guess = 'h'
-print mygame.validate_guess(mygame.guess)
-print mygame.guesses
-mygame.guess_status()
-print mygame.correct_guesses
-print mygame.incorrect_guesses
-mygame.game_status()
 
-mygame.guess = 'q'
-print mygame.validate_guess(mygame.guess)
-print mygame.guesses
-mygame.guess_status()
-print mygame.correct_guesses
-print mygame.incorrect_guesses
-mygame.game_status()
+    result = mygame.validate_guess(mygame.guess)
 
-mygame.guess = 'w'
-print mygame.validate_guess(mygame.guess)
-print mygame.guesses
-mygame.guess_status()
-print mygame.correct_guesses
-print mygame.incorrect_guesses
-mygame.game_status()
 
-mygame.guess = 'y'
-print mygame.validate_guess(mygame.guess)
-print mygame.guesses
-mygame.guess_status()
-print mygame.correct_guesses
-print mygame.trimmed_incorrect_guesses
-mygame.game_status()
+    if result == 'HANGMAN_ONELETTER':
+        print "Please type one letter."
+    
+    elif result == 'HANGMAN_ALREADYGUESSED':
+        print "You already guessed that letter."
+    
+    elif result == 'HANGMAN_ALPHABET':
+        print "Please type a letter from the English alphabet."
+
+    
+    mygame.construct_billboard()
+    mygame.guess_status()
+    state = mygame.game_status()
+    
+    if state == 'HANGMAN_LOSE':
+        print "Quit?"
+        break
+    
+    elif state == 'HANGMAN_WIN':
+        print "Congratulations"
+        break
+        
+    elif state == HANGMAN_CONTINUE:
+        pass
 
