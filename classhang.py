@@ -6,35 +6,41 @@ import string
 import textwrap
 from hangman_game import *
 
-SCREEN_SIZE = 100
-
 #list_of_words = "words.txt"
 
-def load_wordlist():
-    alphabet = set('abcdefghijklmnopqrstuvwxyz')
-    self.lines = open(self.list_of_words).read().decode('utf-8').split('\n')
-    self.lines = [line for line in self.lines if line.isalpha()]
-    self.lines = [line for line in self.lines if line.islower()]
-    self.lines = [line for line in self.lines if len(line) > 6]
-    self.lines = [line for line in self.lines if set(line) <= alphabet]
+class RenderGame(object):
+    
+    def __init__(self):
+        self.SCREEN_SIZE = 100
+    
+
+    def load_wordlist(self):
+        alphabet = set('abcdefghijklmnopqrstuvwxyz')
+        self.lines = open(self.list_of_words).read().decode('utf-8').split('\n')
+        self.lines = [line for line in self.lines if line.isalpha()]
+        self.lines = [line for line in self.lines if line.islower()]
+        self.lines = [line for line in self.lines if len(line) > 6]
+        self.lines = [line for line in self.lines if set(line) <= alphabet]
    
-    #print self.lines
-    return self.lines
+        #print self.lines
+        return self.lines
         
 
         
-def cool_print(str):
-    textwrap.dedent(str)
-    for char in str:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(0.01)   # Or whatever delay you'd like
-    print   # One last print to make sure that you move to a new line
+    def cool_print(self, str):
+        textwrap.dedent(str)
+        for char in str:
+            sys.stdout.write(char)
+            sys.stdout.flush()
+            time.sleep(0.01)   # Or whatever delay you'd like
+        print   # One last print to make sure that you move to a new line
         
-def clear_screen():
-#clear screen variable (how many blank lines to print)
-    print "\n"*SCREEN_SIZE
+    def clear_screen(self):
+    #clear screen variable (how many blank lines to print)
+        print "\n"* self.SCREEN_SIZE
         
+    def scene(self):
+        pass
 
         
         
