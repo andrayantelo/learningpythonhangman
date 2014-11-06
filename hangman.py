@@ -5,36 +5,20 @@ from hangmanascii import *
 import time
 import string
 
+SCREEN_SIZE = 100
 
-class hangman(Object):
-	
-	def __init__(self, screen_size = 100):
-		self.screen_size = screen_size
-		self.wordlist = 'Apple Watermelon Pineapple Papaya Strawberry Blueberry Fig Durian'.split()
-		self.list_of_words = "words.txt"
+list_of_words = "words.txt"
 
-#SCREEN_SIZE = 100
-
-#list_of_words = "words.txt"
-
-	def load_wordlist(self):
-		alphabet = set('abcdefghijklmnopqrstuvwxyz')
-		self.lines = open(self.list_of_words).read().decode('utf-8').split('\n')
-		self.lines = [line for line in lines if line.isalpha()]
-		self.lines = [line for line in lines if line.islower()]
-		self.lines = [line for line in lines if len(line) > 6]
-		self.lines = [line for line in lines if set(line) <= alphabet]
+def load_wordlist():
+    alphabet = set('abcdefghijklmnopqrstuvwxyz')
+    lines = open(list_of_words).read().decode('utf-8').split('\n')
+    lines = [line for line in lines if line.isalpha()]
+    lines = [line for line in lines if line.islower()]
+    lines = [line for line in lines if len(line) > 6]
+    lines = [line for line in lines if set(line) <= alphabet]
    
-		print lines
-		return lines
-   
-
-mygame = hangman()
-mygame.load_wordlist()
-
-
-
-
+    #print lines
+    return lines
 
 def cool_print(str):
   for char in str:
@@ -79,76 +63,75 @@ def randomwordchoice():
     #wordlist = 'Apple Watermelon Pineapple Papaya Strawberry Blueberry Fig Durian'.split()
     #lowerwordlist = [letter.lower() for letter in wordlist] # make everything lower case
     
-    
-    secretword = random.choice(load_wordlist())
+	secretword = random.choice(load_wordlist())
     #printing out the secretword just to see if spaces match update
     
     
-    king_speech()
-    print "_ "*len(secretword)
+	king_speech()
+	print "_ "*len(secretword)
 	print noman
     
 
-    guesses = ''
+	guesses = ''
 
-    while True: #ask about formatting
+	while True: #ask about formatting
         
-        guess = str(raw_input("\nGuess a letter!\n> "))
-        guess = guess.lower()
-        allowed_letters = 'abcdefghijklmnopqrstuvwxyz'
+		guess = str(raw_input("\nGuess a letter!\n> "))
+		guess = guess.lower()
+		allowed_letters = 'abcdefghijklmnopqrstuvwxyz'
         
              
        
-        if len(guess) != 1:
-            clear_screen()
-            print "Type in a single letter."
-            secretword_spaces(secretword, guesses)
-            print "\n These are the guesses you have made so far:\n", guesses
-            hangmanascii(incorrectguesses, secretword)
-            continue
-        if guess in guesses:
-            clear_screen()
-            print "You already guessed that."
-            secretword_spaces(secretword, guesses)
-            print "\n These are the guesses you have made so far:\n", guesses
-            hangmanascii(incorrectguesses, secretword)
-            continue
-        if guess not in allowed_letters:
-            clear_screen()
-            print "Please type in a single letter from the English alphabet."
-            secretword_spaces(secretword, guesses)
-            print "\n These are the guesses you have made so far:\n", guesses
-            hangmanascii(incorrectguesses, secretword)
-            continue
+		if len(guess) != 1:
+			clear_screen()
+			print "Type in a single letter."
+			secretword_spaces(secretword, guesses)
+			print "\n These are the guesses you have made so far:\n", guesses
+			hangmanascii(incorrectguesses, secretword)
+			continue
+		if guess in guesses:
+			clear_screen()
+			print "You already guessed that."
+			secretword_spaces(secretword, guesses)
+			print "\n These are the guesses you have made so far:\n", guesses
+			hangmanascii(incorrectguesses, secretword)
+			continue
+		if guess not in allowed_letters:
+			clear_screen()
+			print "Please type in a single letter from the English alphabet."
+			secretword_spaces(secretword, guesses)
+			print "\n These are the guesses you have made so far:\n", guesses
+			hangmanascii(incorrectguesses, secretword)
+			continue
     
  
-        clear_screen()
-        guesses += guess
+		clear_screen()
+		guesses += guess
          # trying out a list for the incorrectguesses to use later when programming the hangman appearance
-        incorrectguesses = []
-        for letter in guesses:
-            if letter not in secretword:
-                incorrectguesses.append(letter)
+		incorrectguesses = []
+		for letter in guesses:
+			if letter not in secretword:
+				incorrectguesses.append(letter)
                 
         # keeping track of correct guesses
-        correctguesses = []
-        for letter in guesses:
-            if letter in secretword:
-                correctguesses.append(letter)
+		correctguesses = []
+		for letter in guesses:
+			if letter in secretword:
+				correctguesses.append(letter)
  
-        secretword_spaces(secretword, guesses) 
-        print "\n These are the guesses you have made so far:\n", guesses  
-        hangmanascii(incorrectguesses, secretword)
+		secretword_spaces(secretword, guesses) 
+		print "\n These are the guesses you have made so far:\n", guesses  
+		hangmanascii(incorrectguesses, secretword)
             
        	
        
           
         
-        youwin = guessed_all_letters(secretword, correctguesses)
+		youwin = guessed_all_letters(secretword, correctguesses)
 
-        if youwin == True:
-            print "You win!"
-            play_more()
+		if youwin == True:
+			print "You win!"
+			play_more()
             
             
 def secretword_spaces(secretword, guesses):
@@ -204,5 +187,5 @@ def guessed_all_letters(secretword, correctguesses):
 
 
     
-#intro()
-#randomwordchoice()
+intro()
+randomwordchoice()

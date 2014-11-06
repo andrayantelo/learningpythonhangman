@@ -1,12 +1,17 @@
 import random
 
-HANGMAN_WIN = 'HANGMAN_WIN'
-HANGMAN_LOSE = 'HANGMAN_LOSE'
 HANGMAN_ALREADYGUESSED = 'ALREADY_GUESSED'
 HANGMAN_CONTINUE = 'HANGMAN_CONTINUE'
 HANGMAN_ONELETTER = 'HANGMAN_ONELETTER'
 HANGMAN_ALPHABET = 'HANGMAN_ALPHABET'
-
+HANGMAN_HEAD = 'HANGMAN_HEAD'
+HANGMAN_ONEARM = 'HANGMAN_ONEARM'
+HANGMAN_TWOARMS = 'HANGMAN_TWOARMS'
+HANGMAN_UPPERTORSO = 'HANGMAN_UPPERTORSO'
+HANGMAN_LOWERTORS0 = 'HANGMAN_LOWERTORSO'
+HANGMAN_ONELEG = 'HANGMAN_ONELEG'
+HANGMAN_LOSE = 'HANGMAN_LOSE'
+HANGMAN_WIN = 'HANGMAN_WIN'
 
 class Hangman(object):
 	
@@ -59,9 +64,21 @@ class Hangman(object):
                 self.trimmed_incorrect_guesses.append(letter)
         missed = self.trimmed_incorrect_guesses
         hit = set(self.correct_guesses)
-        if len(missed) >= 7:
+        if len(missed) == 1:
+            return HANGMAN_HEAD
+        elif len(missed) == 2:
+            return HANGMAN_ONEARM
+        elif len(missed) == 3:
+            return HANGMAN_TWOARMS
+        elif len(missed) == 4:
+            return HANGMAN_UPPERTORSO
+        elif len(missed) == 5:
+            return HANGMAN_LOWERTORSO
+        elif len(missed) == 6:
+            return HANGMAN_ONELEG
+        elif len(missed) >= 7:
             return HANGMAN_LOSE
-        if hit >= set(self.secret_word):
+        elif hit >= set(self.secret_word):
             return HANGMAN_WIN
         else:
             return HANGMAN_CONTINUE

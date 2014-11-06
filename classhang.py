@@ -32,11 +32,10 @@ class RenderGame(object):
         for char in str:
             sys.stdout.write(char)
             sys.stdout.flush()
-            time.sleep(0.01)   # Or whatever delay you'd like
-        print   # One last print to make sure that you move to a new line
+            time.sleep(0.01)   
+        print   
         
     def clear_screen(self):
-    #clear screen variable (how many blank lines to print)
         print "\n"* self.SCREEN_SIZE
         
     def scene(self):
@@ -50,28 +49,7 @@ def run_game():
 
 mygame = Hangman()
 
-intro_text = textwrap.dedent("""
-The year is 1750. You are a resident of England and have been charged with a crime! 
-You attempted to steal an apple at the market. You have been scheduled to be hanged 
-in the village of Tyburn UNLESS you can guess the secret word that is chosen by the
-king. 
-""")
 
-cool_print(intro_text)
-
-raw_input("Press ENTER to Continue.\n> ")
-
-print intro_text
-clear_screen()
-print king
-time.sleep(1)
-clear_screen()
-print king_speaks
-time.sleep(1)
-clear_screen()
-print king
-time.sleep(1)
-clear_screen()
 
 while True:
 
