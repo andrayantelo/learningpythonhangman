@@ -7,8 +7,8 @@ HANGMAN_ALPHABET = 'HANGMAN_ALPHABET'
 HANGMAN_HEAD = 'HANGMAN_HEAD'
 HANGMAN_ONEARM = 'HANGMAN_ONEARM'
 HANGMAN_TWOARMS = 'HANGMAN_TWOARMS'
-HANGMAN_UPPERTORSO = 'HANGMAN_UPPERTORSO'
-HANGMAN_LOWERTORS0 = 'HANGMAN_LOWERTORSO'
+HANGMAN_UPPER = 'HANGMAN_UPPER'
+HANGMAN_LOWER = 'HANGMAN_LOWER'
 HANGMAN_ONELEG = 'HANGMAN_ONELEG'
 HANGMAN_LOSE = 'HANGMAN_LOSE'
 HANGMAN_WIN = 'HANGMAN_WIN'
@@ -71,9 +71,9 @@ class Hangman(object):
         elif len(missed) == 3:
             return HANGMAN_TWOARMS
         elif len(missed) == 4:
-            return HANGMAN_UPPERTORSO
+            return HANGMAN_UPPER
         elif len(missed) == 5:
-            return HANGMAN_LOWERTORSO
+            return HANGMAN_LOWER
         elif len(missed) == 6:
             return HANGMAN_ONELEG
         elif len(missed) >= 7:

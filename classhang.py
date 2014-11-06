@@ -70,6 +70,7 @@ while True:
 
     
     mygame.construct_billboard()
+    print mygame.construct_billboard()
     mygame.guess_status()
     state = mygame.game_status()
     
@@ -83,4 +84,6 @@ while True:
         
     elif state == HANGMAN_CONTINUE:
         pass
+        
+    print mygame.trimmed_incorrect_guesses
 
